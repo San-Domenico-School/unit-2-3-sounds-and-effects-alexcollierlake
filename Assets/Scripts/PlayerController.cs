@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         isOnGround = true;
         Physics.gravity *= gravityModifier;
+
     }
 
     // Update is called once per frame
@@ -51,16 +52,24 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision col)
     {
-        if(collision.gameObject.name == "Ground")
+        if(col.gameObject.name == "Ground")
         {
             isOnGround = true;
+
         }
+        else if (col.gameObject.tag == "Obstacle")
+        {
+            gameOver = true;
+        }
+
+      
     }
 
     private void OnTriggerEnter(Collider other)
     {
         //
+       
     }
 }

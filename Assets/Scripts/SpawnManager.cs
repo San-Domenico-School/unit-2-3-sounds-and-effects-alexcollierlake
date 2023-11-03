@@ -24,9 +24,10 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         spawnPos = new Vector3(25, 0, 0);
-        startDelay = 2.0f;
+        startDelay = 5.0f;
         repeatRate = 2.0f;
         playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
+
         InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
 
         

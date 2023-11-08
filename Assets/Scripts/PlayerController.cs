@@ -52,7 +52,8 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
             playerAnimator.SetTrigger("Jump_trig");
-            gameAudio.Play();
+            gameAudio.PlayOneShot(jumpSound, 2.0f);
+            dirtParticle.Stop();
 
         }
         
@@ -63,12 +64,16 @@ public class PlayerController : MonoBehaviour
         if(col.gameObject.name == "Ground")
         {
             isOnGround = true;
+            dirtParticle.Play();
 
         }
         else if (col.gameObject.tag == "Obstacle")
         {
             gameOver = true;
             playerAnimator.SetBool("Death_b", true);
+            gameAudio.PlayOneShot(crashSound, 2.0f);
+            explosionParticle.Play();
+            dirtParticle.Stop();
 
         }
 

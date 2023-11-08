@@ -22,7 +22,7 @@ public class RepeatBackround : MonoBehaviour
     void Start()
     {
         startPos = transform.position;
-        repeatWidth= GetComponent<BoxCollider>().size.x / 2;
+        repeatWidth = GetComponent<BoxCollider>().size.x / 2;
         
 
 

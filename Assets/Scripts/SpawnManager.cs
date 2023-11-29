@@ -14,11 +14,15 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    [Header("Obstacle Spawn Fields")]
     [SerializeField] private GameObject obstaclePrefab;
 
-    private PlayerController playerControllerScript;
+    
     private Vector3 spawnPos;
     private float startDelay, repeatRate;
+
+    [Header("Collectable Spawn Fields")]
+    [SerializeField]  private int nothing;
 
     // Start is called before the first frame update
     void Start()
@@ -26,16 +30,21 @@ public class SpawnManager : MonoBehaviour
         spawnPos = new Vector3(25, 0, 0);
         startDelay = 5.0f;
         repeatRate = 2.0f;
-        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
+        
 
         InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
 
         
     }
 
+    private void Update()
+    {
+        SpawnCollectable();
+    }
+
     private void SpawnObstacle()
     {
-        if(!playerControllerScript.gameOver)
+        if(!GameManager.gameOver)
         {
             Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
         }
@@ -44,5 +53,10 @@ public class SpawnManager : MonoBehaviour
             CancelInvoke();
         }
         
+    }
+
+    private void SpawnCollectable()
+    {
+        // spaws randomly 
     }
 }

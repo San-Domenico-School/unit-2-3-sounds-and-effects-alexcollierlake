@@ -15,7 +15,7 @@ using UnityEngine;
 public class MoveLeft : MonoBehaviour
 {
     private float speed, leftBound;
-    private PlayerController playerControllerScript;
+    
 
     [SerializeField] private Vector3 direction;
 
@@ -24,7 +24,7 @@ public class MoveLeft : MonoBehaviour
     {
         speed = 15.0f;
         leftBound = -15.0f;
-        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
+        
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class MoveLeft : MonoBehaviour
     {
         destroyOutOfScene();
 
-        if (!playerControllerScript.gameOver)
+        if (!GameManager.gameOver)
         {
             transform.Translate(Time.deltaTime * speed * direction);
         }

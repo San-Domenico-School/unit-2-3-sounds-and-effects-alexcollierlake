@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
     private Rigidbody playerRb;
     private bool isOnGround;
-    public bool gameOver { get; private set; }
     private AudioSource gameAudio;
 
     // Start is called before the first frame update
@@ -47,12 +46,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnJump(InputValue input)
     {
-        if(isOnGround && !gameOver)
+        if(isOnGround && !GameManager.gameOver)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
             playerAnimator.SetTrigger("Jump_trig");
-            gameAudio.PlayOneShot(jumpSound, 2.0f);
+            gameAudio.PlayOneShot(jumpSound, 1.0f);
             dirtParticle.Stop();
 
         }
@@ -69,11 +68,12 @@ public class PlayerController : MonoBehaviour
         }
         else if (col.gameObject.tag == "Obstacle")
         {
-            gameOver = true;
+            GameManager.gameOver = true;
             playerAnimator.SetBool("Death_b", true);
-            gameAudio.PlayOneShot(crashSound, 2.0f);
+            gameAudio.PlayOneShot(crashSound, 1.0f);
             explosionParticle.Play();
             dirtParticle.Stop();
+            
 
         }
 
@@ -82,7 +82,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //
+        if (other.tag == "Scoreable")
+        {
+            GameManager.ChangeScore(10);
+        }
        
     }
 }

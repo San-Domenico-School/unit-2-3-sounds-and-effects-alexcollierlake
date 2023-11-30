@@ -81,10 +81,10 @@ public class GameManager : MonoBehaviour
 
         if (timedGame)
         {
-      
+
             timeRemainingText.gameObject.SetActive(true);
             InvokeRepeating("TimeCountdown", 1.0f, 1.0f);
-            
+
         }
 
         gameOver = false;

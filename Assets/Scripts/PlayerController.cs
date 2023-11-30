@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce, gravityModifier;
     [SerializeField] private ParticleSystem explosionParticle, dirtParticle;
     [SerializeField] private AudioClip jumpSound, crashSound;
+    [SerializeField] private TMPro gameOver;
 
     private Animator playerAnimator;
     private AudioSource playerAudio;
@@ -68,6 +69,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (col.gameObject.tag == "Obstacle")
         {
+
             GameManager.gameOver = true;
             playerAnimator.SetBool("Death_b", true);
             gameAudio.PlayOneShot(crashSound, 1.0f);

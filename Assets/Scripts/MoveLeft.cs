@@ -30,17 +30,14 @@ public class MoveLeft : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        destroyOutOfScene();
 
         if (!GameManager.gameOver)
         {
             transform.Translate(Time.deltaTime * speed * direction);
         }
-        else
-        {
-            speed = 0.0f;
-        }
-        
+
+        destroyOutOfScene();
+
     }
 
     private void destroyOutOfScene()

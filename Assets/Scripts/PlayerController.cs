@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 /**********
  * 
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce, gravityModifier;
     [SerializeField] private ParticleSystem explosionParticle, dirtParticle;
     [SerializeField] private AudioClip jumpSound, crashSound;
-    [SerializeField] private TMPro gameOver;
+    [SerializeField] private TextMeshProUGUI gameOver;
 
     private Animator playerAnimator;
     private AudioSource playerAudio;
@@ -75,6 +76,7 @@ public class PlayerController : MonoBehaviour
             gameAudio.PlayOneShot(crashSound, 1.0f);
             explosionParticle.Play();
             dirtParticle.Stop();
+            gameOver.gameObject.SetActive(true);
             
 
         }
